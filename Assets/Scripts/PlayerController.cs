@@ -53,14 +53,14 @@ public class Player_controller : MonoBehaviour
         {
             if (jumped < 2)
             {
+                transform.Rotate(0, 0, 0);
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 jumped += 1;
             }
-            else
+            /*else if (jumped == 2)
             {
                 jumped = 0;
-            }
-
+            }*/
         }
         rb.AddForce(movement * speed);
     }
@@ -73,6 +73,11 @@ public class Player_controller : MonoBehaviour
             count += 1;
 
             SetCountText();
+        }
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            jumped = 0;
         }
     }
 }
